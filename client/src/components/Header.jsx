@@ -30,7 +30,7 @@ const Header = () => {
          transition={{delay:0.2, duration:0.8}}
          >
          
-            <p>Best text to image generator</p>
+            <p>Create AI Images in Seconds</p>
             <img src={assets.star_icon} alt="" />
         </motion.div>
 
@@ -39,7 +39,7 @@ const Header = () => {
         animate={{opacity:1}}
         transition={{delay:0.4, duration:2}}
         >image</span>, in seconds.</motion.h1>
-        <p className='text-center max-w-xl mx-auto mt-5'>Unleash your creativity with AI. turn your imagination into visual art in seconds - just type , and watch the magic happen.</p>
+        <p className='text-center max-w-xl mx-auto mt-5'>Create stunning images with AI. Turn your ideas into visual art in seconds — just type, and let the magic begin.</p>
         
         <motion.button onClick={onClickHandler} className ='sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full'
             whileHover={{scale:1.05}}
