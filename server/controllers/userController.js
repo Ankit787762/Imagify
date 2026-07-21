@@ -26,11 +26,11 @@ import transactionModel from "../models/transactionModel.js";
 
         const token =jwt.sign({id:user._id},process.env.JWT_SECRET)
 
-        res.json({successs:true, token, user:{name: user.name}})
+        res.json({success:true, token, user:{name: user.name}})
 
     } catch (error) {
         console.log(error)
-        res.json({successs: false, message:error.message})
+        res.json({success: false, message:error.message})
     }
 }
 
@@ -47,7 +47,7 @@ import transactionModel from "../models/transactionModel.js";
         if(isMatch){
            const token =jwt.sign({id:user._id},process.env.JWT_SECRET)
 
-           res.json({successs:true, token, user:{name: user.name}})
+           res.json({success:true, token, user:{name: user.name}})
         }
         else{
             return res.json({success:false, message: 'Invalid Credentials'})
@@ -55,7 +55,7 @@ import transactionModel from "../models/transactionModel.js";
 
     } catch (error) {
         console.log(error)
-        res.json({successs: false, message:error.message})
+        res.json({success: false, message:error.message})
     }
 
 }
@@ -66,11 +66,11 @@ const userCredits =async(req,res)=>{
         const {userId} =req.body
 
         const user =await userModel.findById(userId)
-        res.json({successs:true, credits: user.creditBalance, user:{name:user.name}})
+        res.json({success:true, credits: user.creditBalance, user:{name:user.name}})
 
     } catch (error) {
         console.log(error)
-        res.json({successs: false, message:error.message})
+        res.json({success: false, message:error.message})
     }
 }
 
@@ -122,14 +122,14 @@ const paymentRazorpay = async(req,res)=>{
         await razorpayInstance.orders.create(SchemaTypeOptions,(error,order)=>{
             if(error){
                 console.log(error);
-                return res.json({successs:false, message:error})
+                return res.json({success:false, message:error})
             }
-            res.json({successs:true,order})
+            res.json({success:true,order})
         })
 
     } catch (error) {
         console.log(error);
-        res.json({successs:false,message:error.message})
+        res.json({success:false,message:error.message})
     }
 }
 

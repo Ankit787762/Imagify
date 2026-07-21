@@ -20,7 +20,7 @@ const userAuth =async(req,res,next)=>{
     next();
 
   } catch (error) {
-   res.json({ successs: false, message: error.message })
+   res.json({ success: false, message: error.message })
   }
 
 };
