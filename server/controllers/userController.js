@@ -83,10 +83,10 @@ const paymentRazorpay = async(req,res)=>{
     try {
         const {userId,planId}= req.body
         const userData = await userModel.findById(userId)
-        if(!userId||planId){
+        if(!userId||!planId){
             return res.json({success:false,message:'missing Details'})
         }
-        let credits,plan,amount,userDate
+        let credits,plan,amount,date
         switch(planId){
             case 'Basic':
                 plan = 'Basic',
