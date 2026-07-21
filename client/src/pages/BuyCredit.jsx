@@ -33,12 +33,16 @@ const BuyCredit = () => {
       if(!user){
         setShowLogin(true)
       }
-      await axios.post(backendUrl+'/api/user/pay-razor',{planId},{headers:{token}})
-      if(data.success){
+     const {data}= await axios.post(backendUrl+'/api/user/pay-razor',{planId},{headers:{token}})
+     console.log(data);
+      if(data.successs){
         initPay(data.order)
       }
-
+       else {
+      toast.error(data.message);
+    }
     } catch (error) {
+      console.log(error);
       toast.error(error.message)
     }
   }

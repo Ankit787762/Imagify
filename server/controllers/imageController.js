@@ -10,7 +10,7 @@ export const generateImage = async(req,res) =>{
         const user = await userModel.findById(userId)
 
         if(!user || !prompt){
-            return res.json({success: false, message:'Missing Details'})
+            return res.json({successs: false, message:'Missing Details'})
         }
 
         if(user.creditBalance===0||userModel.creditBalance<0){
@@ -33,11 +33,11 @@ export const generateImage = async(req,res) =>{
         
         await userModel.findByIdAndUpdate(user._id, {creditBalance:user.creditBalance-1})
 
-        res.json({success:true , message: "Image Generated",
+        res.json({successs:true , message: "Image Generated",
             creditBalance: user.creditBalance-1, resultImage})
 
     } catch (error) {
         console.log(error.message)
-        res.json({ success: false, message: error.message })
+        res.json({ successs: false, message: error.message })
     }
 }

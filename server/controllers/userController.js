@@ -9,7 +9,7 @@ import transactionModel from "../models/transactionModel.js";
         const {name,email,password} =req.body;
 
         if(!name||!email||!password){
-            return res.json({succes:false, message: 'Missing Details'})
+            return res.json({success:false, message: 'Missing Details'})
         }
 
         const salt = await bcrypt.genSalt(10)
@@ -26,11 +26,11 @@ import transactionModel from "../models/transactionModel.js";
 
         const token =jwt.sign({id:user._id},process.env.JWT_SECRET)
 
-        res.json({success:true, token, user:{name: user.name}})
+        res.json({successs:true, token, user:{name: user.name}})
 
     } catch (error) {
         console.log(error)
-        res.json({success: false, message:error.message})
+        res.json({successs: false, message:error.message})
     }
 }
 
@@ -40,22 +40,22 @@ import transactionModel from "../models/transactionModel.js";
         const user = await userModel.findOne({email})
 
         if(!user){
-            return res.json({succes:false, message: 'User does not exist'})
+            return res.json({success:false, message: 'User does not exist'})
         }
         const isMatch = await bcrypt.compare(password, user.password)
 
         if(isMatch){
            const token =jwt.sign({id:user._id},process.env.JWT_SECRET)
 
-           res.json({success:true, token, user:{name: user.name}})
+           res.json({successs:true, token, user:{name: user.name}})
         }
         else{
-            return res.json({succes:false, message: 'Invalid Credentials'})
+            return res.json({success:false, message: 'Invalid Credentials'})
         }
 
     } catch (error) {
         console.log(error)
-        res.json({success: false, message:error.message})
+        res.json({successs: false, message:error.message})
     }
 
 }
@@ -66,11 +66,11 @@ const userCredits =async(req,res)=>{
         const {userId} =req.body
 
         const user =await userModel.findById(userId)
-        res.json({success:true, credits: user.creditBalance, user:{name:user.name}})
+        res.json({successs:true, credits: user.creditBalance, user:{name:user.name}})
 
     } catch (error) {
         console.log(error)
-        res.json({success: false, message:error.message})
+        res.json({successs: false, message:error.message})
     }
 }
 
@@ -84,7 +84,7 @@ const paymentRazorpay = async(req,res)=>{
         const {userId,planId}= req.body
         const userData = await userModel.findById(userId)
         if(!userId||planId){
-            return res.json({succes:false,message:'missing Details'})
+            return res.json({success:false,message:'missing Details'})
         }
         let credits,plan,amount,userDate
         switch(planId){
@@ -104,7 +104,7 @@ const paymentRazorpay = async(req,res)=>{
                 amount = 250
                 break;
             default:
-                return res.json({succes:false,message:'Plan not found'})
+                return res.json({success:false,message:'Plan not found'})
                 break;
         }
         date = Date.now();
@@ -122,14 +122,14 @@ const paymentRazorpay = async(req,res)=>{
         await razorpayInstance.orders.create(SchemaTypeOptions,(error,order)=>{
             if(error){
                 console.log(error);
-                return res.json({success:false, message:error})
+                return res.json({successs:false, message:error})
             }
-            res.json({success:true,order})
+            res.json({successs:true,order})
         })
 
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:error.message})
+        res.json({successs:false,message:error.message})
     }
 }
 
