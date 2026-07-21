@@ -119,7 +119,7 @@ const paymentRazorpay = async(req,res)=>{
             receipt:newTransaction._id,
         }
 
-        await razorpayInstance.orders.create(SchemaTypeOptions,(error,order)=>{
+        await razorpayInstance.orders.create(options,(error,order)=>{
             if(error){
                 console.log(error);
                 return res.json({success:false, message:error})
