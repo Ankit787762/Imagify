@@ -1,4 +1,5 @@
 #  Imagify
+<img width="1865" height="852" alt="Screenshot 2026-09-17 174148" src="https://github.com/user-attachments/assets/d522e281-5245-438a-9dac-be3590eeeae8" />
 
 Imagify is a MERN stack text-to-image generator web application that allows users to generate AI images from text prompts.
 
